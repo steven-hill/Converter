@@ -4,11 +4,11 @@
 //
 //  Created by Steven Hill on 06/07/2024.
 //
-// https://www.hackingwithswift.com/articles/110/build-a-unit-converter-for-tvos
+//  https://www.hackingwithswift.com/articles/110/build-a-unit-converter-for-tvos
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController {
     
     let conversions = [
         (title: "Distance", units: [UnitLength.astronomicalUnits, UnitLength.centimeters, UnitLength.feet, UnitLength.inches, UnitLength.kilometers, UnitLength.lightyears, UnitLength.meters, UnitLength.miles, UnitLength.millimeters, UnitLength.parsecs, UnitLength.yards]),
@@ -18,14 +18,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         (title: "Volume", units: [UnitVolume.bushels, UnitVolume.cubicFeet, UnitVolume.cups, UnitVolume.fluidOunces, UnitVolume.gallons, UnitVolume.liters, UnitVolume.milliliters, UnitVolume.pints, UnitVolume.quarts, UnitVolume.tablespoons, UnitVolume.teaspoons]),
     ]
     
+    // MARK: - Properties
+    
     var selectedFromUnit = 0
     var selectedToUnit = 1
+    
+    // MARK: - IBOutlets
 
     @IBOutlet weak var unitType: UISegmentedControl!
     @IBOutlet weak var fromUnit: UITableView!
     @IBOutlet weak var toUnit: UITableView!
     @IBOutlet weak var amount: UITextField!
     @IBOutlet weak var result: UILabel!
+    
+    // MARK: - IBActions
     
     @IBAction func unitChanged(_ sender: Any) {
         selectedFromUnit = 0
@@ -39,6 +45,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         updateResult()
     }
  
+    // MARK: - Lifecycle Method
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         unitType.removeAllSegments()
@@ -48,6 +56,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         unitType.selectedSegmentIndex = 0
         unitChanged(self)
     }
+    
+    // MARK: - Helper Method
     
     func updateResult() {
         let input = Double(amount.text ?? "") ?? 0.0
@@ -64,18 +74,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 }
 
-extension ViewController {
+// MARK: - UITableViewDataSource
+
+extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let conversion = conversions[unitType.selectedSegmentIndex]
-            return conversion.units.count
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if tableView == fromUnit {
-            return "Convert from"
-        } else {
-            return "Convert To"
-        }
+        return conversion.units.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -103,6 +107,18 @@ extension ViewController {
             }
         }
         return cell
+    }
+}
+
+// MARK: - UITableViewDelegate
+    
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if tableView == fromUnit {
+            return "Convert from"
+        } else {
+            return "Convert To"
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
