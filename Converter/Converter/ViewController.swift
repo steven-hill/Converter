@@ -49,12 +49,17 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUnitTypeSegmentedControl()
+    }
+    
+    // MARK: - Setup Method
+    
+    private func setupUnitTypeSegmentedControl() {
         unitType.removeAllSegments()
         for (index, conversion) in conversions.enumerated() {
             unitType.insertSegment(withTitle: conversion.title, at: index, animated: false)
         }
         unitType.selectedSegmentIndex = 0
-        unitChanged(self)
     }
     
     // MARK: - Helper Method
