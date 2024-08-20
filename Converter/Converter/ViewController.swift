@@ -10,15 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let conversions = [
-        (title: "Distance", units: [UnitLength.astronomicalUnits, UnitLength.centimeters, UnitLength.feet, UnitLength.inches, UnitLength.kilometers, UnitLength.lightyears, UnitLength.meters, UnitLength.miles, UnitLength.millimeters, UnitLength.parsecs, UnitLength.yards]),
-        (title: "Duration", units: [UnitDuration.hours, UnitDuration.minutes, UnitDuration.seconds]),
-        (title: "Mass", units: [UnitMass.grams, UnitMass.kilograms, UnitMass.ounces, UnitMass.pounds, UnitMass.stones, UnitMass.metricTons]),
-        (title: "Temperature", units: [UnitTemperature.celsius, UnitTemperature.fahrenheit, UnitTemperature.kelvin]),
-        (title: "Volume", units: [UnitVolume.bushels, UnitVolume.cubicFeet, UnitVolume.cups, UnitVolume.fluidOunces, UnitVolume.gallons, UnitVolume.liters, UnitVolume.milliliters, UnitVolume.pints, UnitVolume.quarts, UnitVolume.tablespoons, UnitVolume.teaspoons]),
-    ]
-    
     // MARK: - Properties
+    
+    private let dataSource: ConversionDataSourceProtocol
     
     var selectedFromUnit = 0
     var selectedToUnit = 1
@@ -30,6 +24,18 @@ class ViewController: UIViewController {
     @IBOutlet weak var toUnit: UITableView!
     @IBOutlet weak var amount: UITextField!
     @IBOutlet weak var result: UILabel!
+    
+    // MARK: - Initialization
+    
+    init(dataSource: ConversionDataSourceProtocol) {
+        self.dataSource = dataSource
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        self.dataSource = Conversion()
+        super.init(coder: coder)
+    }
     
     // MARK: - IBActions
     
@@ -56,7 +62,7 @@ class ViewController: UIViewController {
     
     private func setupUnitTypeSegmentedControl() {
         unitType.removeAllSegments()
-        for (index, conversion) in conversions.enumerated() {
+        for (index, conversion) in dataSource.conversions.enumerated() {
             unitType.insertSegment(withTitle: conversion.title, at: index, animated: false)
         }
         unitType.selectedSegmentIndex = 0
@@ -67,7 +73,7 @@ class ViewController: UIViewController {
     func updateResult() {
         let input = Double(amount.text ?? "") ?? 0.0
         
-        let conversion = conversions[unitType.selectedSegmentIndex]
+        let conversion = dataSource.conversions[unitType.selectedSegmentIndex]
         let from = conversion.units[selectedFromUnit]
         let to = conversion.units[selectedToUnit]
         let inputMeasurement = Measurement(value: input, unit: from)
@@ -83,8 +89,7 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let conversion = conversions[unitType.selectedSegmentIndex]
-        return conversion.units.count
+        return dataSource.conversions[unitType.selectedSegmentIndex].units.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -93,7 +98,7 @@ extension ViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
-        let conversion = conversions[unitType.selectedSegmentIndex]
+        let conversion = dataSource.conversions[unitType.selectedSegmentIndex]
         let unit = conversion.units[indexPath.row]
         
         cell.textLabel?.text = formatter.string(from: unit).capitalized
