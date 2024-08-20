@@ -70,8 +70,11 @@ class ViewController: UIViewController {
     
     // MARK: - Helper Method
     
-    func updateResult() {
-        let input = Double(amount.text ?? "") ?? 0.0
+    private func updateResult() {
+        guard let input = Double(amount.text ?? "") else {
+            result.text = "Invalid input"
+            return 
+        }
         
         let conversion = dataSource.conversions[unitType.selectedSegmentIndex]
         let from = conversion.units[selectedFromUnit]
