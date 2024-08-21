@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     // MARK: - Properties
     
     private let dataSource: ConversionDataSourceProtocol
+    private let conversionService: ConversionServiceProtocol
     
     private var selectedFromUnit = 0
     private var selectedToUnit = 1
@@ -27,13 +28,15 @@ class ViewController: UIViewController {
     
     // MARK: - Initialization
     
-    init(dataSource: ConversionDataSourceProtocol) {
+    init(dataSource: ConversionDataSourceProtocol, conversionService: ConversionServiceProtocol) {
         self.dataSource = dataSource
+        self.conversionService = conversionService
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         self.dataSource = Conversion()
+        self.conversionService = Converter()
         super.init(coder: coder)
     }
     
@@ -79,8 +82,7 @@ class ViewController: UIViewController {
         let conversion = dataSource.conversions[unitType.selectedSegmentIndex]
         let from = conversion.units[selectedFromUnit]
         let to = conversion.units[selectedToUnit]
-        let inputMeasurement = Measurement(value: input, unit: from)
-        let output = inputMeasurement.converted(to: to)
+        let output = conversionService.convert(input, from: from, to: to)
         
         let formatter = MeasurementFormatter()
         formatter.unitOptions = .providedUnit
