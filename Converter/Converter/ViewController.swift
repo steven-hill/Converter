@@ -14,16 +14,16 @@ class ViewController: UIViewController {
     
     private let dataSource: ConversionDataSourceProtocol
     
-    var selectedFromUnit = 0
-    var selectedToUnit = 1
+    private var selectedFromUnit = 0
+    private var selectedToUnit = 1
     
     // MARK: - IBOutlets
 
-    @IBOutlet weak var unitType: UISegmentedControl!
-    @IBOutlet weak var fromUnit: UITableView!
-    @IBOutlet weak var toUnit: UITableView!
-    @IBOutlet weak var amount: UITextField!
-    @IBOutlet weak var result: UILabel!
+    @IBOutlet private weak var unitType: UISegmentedControl!
+    @IBOutlet private weak var fromUnit: UITableView!
+    @IBOutlet private weak var toUnit: UITableView!
+    @IBOutlet private weak var amount: UITextField!
+    @IBOutlet private weak var result: UILabel!
     
     // MARK: - Initialization
     
@@ -39,7 +39,7 @@ class ViewController: UIViewController {
     
     // MARK: - IBActions
     
-    @IBAction func unitChanged(_ sender: Any) {
+    @IBAction private func unitChanged(_ sender: Any) {
         selectedFromUnit = 0
         selectedToUnit = 1
         fromUnit.reloadData()
@@ -47,7 +47,7 @@ class ViewController: UIViewController {
         updateResult()
     }
     
-    @IBAction func amountChanged(_ sender: Any) {
+    @IBAction private func amountChanged(_ sender: Any) {
         updateResult()
     }
  
