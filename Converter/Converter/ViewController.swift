@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     
     private let dataSource: ConversionDataSourceProtocol
     private let conversionService: ConversionServiceProtocol
+    private let formatterService: FormatterServiceProtocol
     
     private var selectedFromUnit = 0
     private var selectedToUnit = 1
@@ -28,15 +29,17 @@ class ViewController: UIViewController {
     
     // MARK: - Initialization
     
-    init(dataSource: ConversionDataSourceProtocol, conversionService: ConversionServiceProtocol) {
+    init(dataSource: ConversionDataSourceProtocol, conversionService: ConversionServiceProtocol, formatterService: FormatterServiceProtocol) {
         self.dataSource = dataSource
         self.conversionService = conversionService
+        self.formatterService = formatterService
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         self.dataSource = Conversion()
         self.conversionService = Converter()
+        self.formatterService = Formatter()
         super.init(coder: coder)
     }
     
@@ -83,10 +86,7 @@ class ViewController: UIViewController {
         let from = conversion.units[selectedFromUnit]
         let to = conversion.units[selectedToUnit]
         let output = conversionService.convert(input, from: from, to: to)
-        
-        let formatter = MeasurementFormatter()
-        formatter.unitOptions = .providedUnit
-        result.text = formatter.string(from: output)
+        result.text = formatterService.formatMeasurement(output)
     }
 }
 
@@ -98,15 +98,10 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let formatter = MeasurementFormatter()
-        formatter.unitStyle = .long
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        
         let conversion = dataSource.conversions[unitType.selectedSegmentIndex]
         let unit = conversion.units[indexPath.row]
-        
-        cell.textLabel?.text = formatter.string(from: unit).capitalized
+        cell.textLabel?.text = formatterService.formatUnit(unit)
         
         if tableView == fromUnit {
             if indexPath.row == selectedFromUnit {

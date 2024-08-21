@@ -14,6 +14,7 @@
 		5BD368462C394BDF00E7FA31 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 5BD368452C394BDF00E7FA31 /* Base */; };
 		5BF4D9F82C74AEA8002EDA25 /* Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4D9F72C74AEA8002EDA25 /* Conversion.swift */; };
 		5BF4D9FA2C75F3A6002EDA25 /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4D9F92C75F3A6002EDA25 /* Converter.swift */; };
+		5BF4D9FC2C761C5B002EDA25 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF4D9FB2C761C5B002EDA25 /* Formatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		5BD368452C394BDF00E7FA31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5BF4D9F72C74AEA8002EDA25 /* Conversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversion.swift; sourceTree = "<group>"; };
 		5BF4D9F92C75F3A6002EDA25 /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
+		5BF4D9FB2C761C5B002EDA25 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				5BD3683B2C394BDE00E7FA31 /* AppDelegate.swift */,
 				5BF4D9F72C74AEA8002EDA25 /* Conversion.swift */,
 				5BF4D9F92C75F3A6002EDA25 /* Converter.swift */,
+				5BF4D9FB2C761C5B002EDA25 /* Formatter.swift */,
 				5BD3683D2C394BDE00E7FA31 /* ViewController.swift */,
 				5BD3683F2C394BDE00E7FA31 /* Main.storyboard */,
 				5BD368422C394BDF00E7FA31 /* Assets.xcassets */,
@@ -141,6 +144,7 @@
 			files = (
 				5BF4D9F82C74AEA8002EDA25 /* Conversion.swift in Sources */,
 				5BD3683E2C394BDE00E7FA31 /* ViewController.swift in Sources */,
+				5BF4D9FC2C761C5B002EDA25 /* Formatter.swift in Sources */,
 				5BF4D9FA2C75F3A6002EDA25 /* Converter.swift in Sources */,
 				5BD3683C2C394BDE00E7FA31 /* AppDelegate.swift in Sources */,
 			);
