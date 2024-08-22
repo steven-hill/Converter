@@ -112,11 +112,7 @@ extension ViewController: UITableViewDataSource {
     
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if tableView == fromUnit {
-            return "Convert from"
-        } else {
-            return "Convert To"
-        }
+        return tableView == fromUnit ? "Convert from" : "Convert to"
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
