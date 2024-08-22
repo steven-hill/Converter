@@ -101,21 +101,9 @@ extension ViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let conversion = dataSource.conversions[unitType.selectedSegmentIndex]
         let unit = conversion.units[indexPath.row]
-        cell.textLabel?.text = formatterService.formatUnit(unit)
         
-        if tableView == fromUnit {
-            if indexPath.row == selectedFromUnit {
-                cell.accessoryType = .checkmark
-            } else {
-                cell.accessoryType = .none
-            }
-        } else if tableView == toUnit {
-            if indexPath.row == selectedToUnit {
-                cell.accessoryType = .checkmark
-            } else {
-                cell.accessoryType = .none
-            }
-        }
+        cell.textLabel?.text = formatterService.formatUnit(unit)
+        cell.accessoryType = (tableView == fromUnit && indexPath.row == selectedFromUnit) || (tableView == toUnit && indexPath.row == selectedToUnit) ? .checkmark : .none
         return cell
     }
 }
