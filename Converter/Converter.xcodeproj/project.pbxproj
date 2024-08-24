@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5B5DA96B2C7A5C9A00ECD3E8 /* ConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DA96A2C7A5C9A00ECD3E8 /* ConverterTests.swift */; };
 		5B5DA9722C7A5CDF00ECD3E8 /* ViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DA9712C7A5CDF00ECD3E8 /* ViewControllerTests.swift */; };
 		5BD3683C2C394BDE00E7FA31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD3683B2C394BDE00E7FA31 /* AppDelegate.swift */; };
 		5BD3683E2C394BDE00E7FA31 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD3683D2C394BDE00E7FA31 /* ViewController.swift */; };
@@ -31,7 +30,6 @@
 
 /* Begin PBXFileReference section */
 		5B5DA9682C7A5C9A00ECD3E8 /* ConverterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConverterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5B5DA96A2C7A5C9A00ECD3E8 /* ConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterTests.swift; sourceTree = "<group>"; };
 		5B5DA9712C7A5CDF00ECD3E8 /* ViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTests.swift; sourceTree = "<group>"; };
 		5BD368382C394BDE00E7FA31 /* Converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Converter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BD3683B2C394BDE00E7FA31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -65,7 +63,6 @@
 		5B5DA9692C7A5C9A00ECD3E8 /* ConverterTests */ = {
 			isa = PBXGroup;
 			children = (
-				5B5DA96A2C7A5C9A00ECD3E8 /* ConverterTests.swift */,
 				5B5DA9712C7A5CDF00ECD3E8 /* ViewControllerTests.swift */,
 			);
 			path = ConverterTests;
@@ -206,7 +203,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B5DA9722C7A5CDF00ECD3E8 /* ViewControllerTests.swift in Sources */,
-				5B5DA96B2C7A5C9A00ECD3E8 /* ConverterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
