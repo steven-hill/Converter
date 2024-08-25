@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     
     // MARK: - IBOutlets
 
-    @IBOutlet private weak var unitType: UISegmentedControl!
+    @IBOutlet weak var unitType: UISegmentedControl!
     @IBOutlet weak var fromUnit: UITableView!
     @IBOutlet weak var toUnit: UITableView!
     @IBOutlet private weak var amount: UITextField!
