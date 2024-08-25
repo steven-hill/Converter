@@ -11,17 +11,11 @@ import XCTest
 final class ViewControllerTests: XCTestCase {
 
     func test_viewController_canInit() throws {
-        let bundle = Bundle(for: ViewController.self)
-        let sb = UIStoryboard(name: "Main", bundle: bundle)
-        let initialVC = sb.instantiateInitialViewController()
-        _ = try XCTUnwrap(initialVC as? ViewController)
+        _ = try makeSUT()
     }
     
     func test_viewController_isDelegateAndDataSourceOfTableViews() throws {
-        let bundle = Bundle(for: ViewController.self)
-        let sb = UIStoryboard(name: "Main", bundle: bundle)
-        let initialVC = sb.instantiateInitialViewController()
-        let sut = try XCTUnwrap(initialVC as? ViewController)
+        let sut = try makeSUT()
         
         sut.loadViewIfNeeded()
         
@@ -29,5 +23,12 @@ final class ViewControllerTests: XCTestCase {
         XCTAssertNotNil(sut.fromUnit.delegate, "VC should be fromUnit tableView's delegate.")
         XCTAssertNotNil(sut.toUnit.dataSource, "VC should be toUnit tableView's data source.")
         XCTAssertNotNil(sut.toUnit.delegate, "VC should be toUnit tableView's delegate.")
+    }
+    
+    private func makeSUT() throws -> ViewController {
+        let bundle = Bundle(for: ViewController.self)
+        let sb = UIStoryboard(name: "Main", bundle: bundle)
+        let initialVC = sb.instantiateInitialViewController()
+        return try XCTUnwrap(initialVC as? ViewController)
     }
 }
