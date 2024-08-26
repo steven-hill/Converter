@@ -38,6 +38,17 @@ final class ViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.unitType.titleForSegment(at: 4), "Volume", "Segment at 4 should be 'Volume'.")
     }
     
+    func test_viewController_setsTitleForHeaderInSection() throws {
+        let sut = try makeSUT()
+        
+        sut.loadViewIfNeeded()
+        let fromUnitTitle = sut.tableView(sut.fromUnit, titleForHeaderInSection: 0)
+        let toUnitTitle = sut.tableView(sut.toUnit, titleForHeaderInSection: 0)
+        
+        XCTAssertEqual(fromUnitTitle, "Convert from", "Expected header title to be 'Convert from' for fromUnit tableView.")
+        XCTAssertEqual(toUnitTitle, "Convert to", "Expected header title to be 'Convert to' for toUnit tableView.")
+    }
+    
     private func makeSUT() throws -> ViewController {
         let bundle = Bundle(for: ViewController.self)
         let sb = UIStoryboard(name: "Main", bundle: bundle)
