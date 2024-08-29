@@ -24,8 +24,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var unitType: UISegmentedControl!
     @IBOutlet weak var fromUnit: UITableView!
     @IBOutlet weak var toUnit: UITableView!
-    @IBOutlet private weak var amount: UITextField!
-    @IBOutlet private weak var result: UILabel!
+    @IBOutlet weak var amount: UITextField!
+    @IBOutlet weak var result: UILabel!
     
     // MARK: - Initialization
     
@@ -76,7 +76,7 @@ class ViewController: UIViewController {
     
     // MARK: - Helper Method
     
-    private func updateResult() {
+    func updateResult() {
         guard let input = Double(amount.text ?? "") else {
             result.text = "Invalid input"
             return 

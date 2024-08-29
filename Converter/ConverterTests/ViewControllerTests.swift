@@ -49,6 +49,16 @@ final class ViewControllerTests: XCTestCase {
         XCTAssertEqual(toUnitTitle, "Convert to", "Expected header title to be 'Convert to' for toUnit tableView.")
     }
     
+    func test_updateResult_withInvalidInputReturnsMessage() throws {
+        let sut = try makeSUT()
+        
+        sut.loadViewIfNeeded()
+        sut.amount.text = ""
+        sut.updateResult()
+        
+        XCTAssertEqual(sut.result.text, "Invalid input", "Empty input to textfield should return 'Invalid input' message in textfield.")
+    }
+    
     private func makeSUT() throws -> ViewController {
         let bundle = Bundle(for: ViewController.self)
         let sb = UIStoryboard(name: "Main", bundle: bundle)
