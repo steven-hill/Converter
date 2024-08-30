@@ -14,6 +14,15 @@ final class ViewControllerTests: XCTestCase {
         _ = try makeSUT()
     }
     
+    func test_viewController_setsSelectedFromUnitAndSelectedToUnitCorrectly() throws {
+        let sut = try makeSUT()
+        
+        sut.loadViewIfNeeded()
+        
+        XCTAssertEqual(sut.selectedFromUnit, 0, "'selectedFromUnit' should intially be set to 0.")
+        XCTAssertEqual(sut.selectedToUnit, 1, "'selectedToUnit' should intially be set to 1.")
+    }
+    
     func test_viewController_isDelegateAndDataSourceOfTableViews() throws {
         let sut = try makeSUT()
         
