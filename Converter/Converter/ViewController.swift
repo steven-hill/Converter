@@ -16,8 +16,8 @@ class ViewController: UIViewController {
     private let conversionService: ConversionServiceProtocol
     private let formatterService: FormatterServiceProtocol
     
-    private var selectedFromUnit = 0
-    private var selectedToUnit = 1
+    var selectedFromUnit = 0
+    var selectedToUnit = 1
     
     // MARK: - IBOutlets
 
