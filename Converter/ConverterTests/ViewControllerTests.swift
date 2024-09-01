@@ -45,6 +45,7 @@ final class ViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.unitType.titleForSegment(at: 2), "Mass", "Segment at 2 should be 'Mass'.")
         XCTAssertEqual(sut.unitType.titleForSegment(at: 3), "Temperature", "Segment at 3 should be 'Temperature'.")
         XCTAssertEqual(sut.unitType.titleForSegment(at: 4), "Volume", "Segment at 4 should be 'Volume'.")
+        XCTAssertEqual(sut.unitType.selectedSegmentIndex, 0, "The selected segment should default to the 0 index on loading.")
     }
     
     func test_viewController_setsTitleForHeaderInSection() throws {
