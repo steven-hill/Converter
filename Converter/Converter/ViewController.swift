@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     private let dataSource: ConversionDataSourceProtocol
     private let conversionService: ConversionServiceProtocol
     private let formatterService: FormatterServiceProtocol
+    private let reuseIdentifier = "Cell"
     
     var selectedFromUnit = 0
     var selectedToUnit = 1
@@ -98,7 +99,7 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         let conversion = dataSource.conversions[unitType.selectedSegmentIndex]
         let unit = conversion.units[indexPath.row]
         
