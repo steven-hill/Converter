@@ -14,6 +14,15 @@ final class ViewControllerTests: XCTestCase {
         _ = try makeSUT()
     }
     
+    func test_viewController_setsReuseIdentifierCorrectly() throws {
+        let sut = try makeSUT()
+        
+        sut.loadViewIfNeeded()
+        
+        _ = try XCTUnwrap(sut.fromUnit.dequeueReusableCell(withIdentifier: "Cell")?.reuseIdentifier)
+        _ = try XCTUnwrap(sut.toUnit.dequeueReusableCell(withIdentifier: "Cell")?.reuseIdentifier)
+    }
+    
     func test_viewController_setsSelectedFromUnitAndSelectedToUnitCorrectly() throws {
         let sut = try makeSUT()
         
