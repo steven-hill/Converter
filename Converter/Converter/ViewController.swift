@@ -17,8 +17,8 @@ class ViewController: UIViewController {
     private let formatterService: FormatterServiceProtocol
     private let reuseIdentifier = "Cell"
     
-    var selectedFromUnit = 0
-    var selectedToUnit = 1
+    private(set) var selectedFromUnit = 0
+    private(set) var selectedToUnit = 1
     
     // MARK: - IBOutlets
 
